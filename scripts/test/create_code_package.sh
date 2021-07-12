@@ -1,7 +1,7 @@
 export PATH=$PATH:$PWD
 export CPDCTL_ENABLE_CODE_PACKAGE=1
 
-cpdctl config context use cpd_prod
+cpdctl config context use cpd
 
 qa_space_id=$QA_SPACE_ID
 code_package_name="clustering-credit-risk-$(date +'%Y-%m-%d_%H-%M-%S')"
