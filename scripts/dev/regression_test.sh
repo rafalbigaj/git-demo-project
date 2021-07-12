@@ -1,6 +1,11 @@
 export PATH=$PATH:$PWD
 export CPDCTL_ENABLE_CODE_PACKAGE=1
 
+dev_space_id=$DEV_SPACE_ID
+if [ -z "$dev_space_id" ]; then
+  exit 0
+fi
+
 cpdctl config context use cpd
 
 qa_space_id=$QA_SPACE_ID
