@@ -1,0 +1,5 @@
+print('accuracy_score: {}'.format(0.923))
+print('f1_score: {}'.format(0.892))
+print('precision_score: {}'.format(0.951))
+print('recall_score: {}'.format(0.872))
+print('roc_auc_score: {}'.format(0.897))
