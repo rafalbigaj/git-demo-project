@@ -3,6 +3,7 @@ export CPDCTL_ENABLE_CODE_PACKAGE=1
 
 dev_space_id=$DEV_SPACE_ID
 if [ -z "$dev_space_id" ]; then
+  sleep 17
   exit 0
 fi
 

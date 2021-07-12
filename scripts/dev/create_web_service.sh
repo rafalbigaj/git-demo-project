@@ -2,6 +2,7 @@ export PATH=$PATH:$PWD
 
 dev_space_id=$DEV_SPACE_ID
 if [ -z "$dev_space_id" ]; then
+  sleep 7
   exit 0
 fi
 
