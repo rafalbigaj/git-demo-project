@@ -17,7 +17,7 @@ node {
         }
 
         stage('Run model risk management test') {
-            sh 'bash -e ./scripts/deploy/mrm_check.sh'
+            sh 'bash -e ./scripts/test/mrm_check.sh'
         }
     }
 }
