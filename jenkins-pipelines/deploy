@@ -1,0 +1,20 @@
+node {
+    withCredentials([file(credentialsId: 'CPDCTL_MULTI_CLUSTER_CPD35RT_CONFIG', variable: 'CPDCONFIG')]) {
+        checkout scm
+
+        stage('Install cpdctl') {
+            sh '''curl -s https://api.github.com/repos/IBM/cpdctl/releases | jq -r '.[0].assets[] | select (.name == "cpdctl_linux_amd64.tar.gz") | .url'  | xargs -I {} curl -sSL -H 'Accept: application/octet-stream' "{}" -o cpdctl_linux_amd64.tar.gz'''
+            sh '''tar -xvf cpdctl_linux_amd64.tar.gz'''
+            sh 'chmod a+rw $CPDCONFIG'
+        }
+
+        stage('Deploy code package') {
+            zip archive: true, dir: '', glob: '', zipFile: 'code_package.zip'
+            sh 'bash -e ./scripts/deploy/deploy_code_package.sh'
+        }
+
+        stage('Test run') {
+            sh 'bash -e ./scripts/deploy/test_run.sh'
+        }
+    }
+}
