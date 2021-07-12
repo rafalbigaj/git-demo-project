@@ -8,17 +8,16 @@ node {
             sh 'chmod a+rw $CPDCONFIG'
         }
 
-        stage('Create code package') {
-            zip archive: true, dir: '', glob: '', zipFile: 'code_package.zip'
-            sh 'bash -e ./scripts/test/create_code_package.sh'
+        stage('Import assets') {
+            sh 'bash -e ./scripts/test/import_code_package.sh'
         }
 
-        stage('Test code package') {
-            sh 'bash -e ./scripts/test/test.sh'
+        stage('Create web service') {
+            sh 'bash -e ./scripts/test/create_web_service.sh'
         }
 
-        stage('Deploy code package to pre-production') {
-            sh 'bash -e ./scripts/deploy/deploy_code_package.sh'
+        stage('Run model risk management test') {
+            sh 'bash -e ./scripts/deploy/mrm_check.sh'
         }
     }
 }
